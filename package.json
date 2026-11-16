@@ -1,0 +1,70 @@
+{
+  "name": "bdag-chain-1404-explorer",
+  "version": "1.0.0",
+  "description": "BDAG Community Explorer (Chain 1404) — website + Windows desktop app",
+  "main": "electron/main.js",
+  "author": "BDAG Community",
+  "license": "MIT",
+  "homepage": "./",
+  "scripts": {
+    "start": "node server.js",
+    "web": "node server.js",
+    "electron": "electron .",
+    "electron:dev": "electron . --dev",
+    "dist": "electron-builder --win",
+    "dist:win": "electron-builder --win --x64",
+    "dist:dir": "electron-builder --win --dir",
+    "pack": "electron-builder --dir"
+  },
+  "build": {
+    "appId": "community.bdag.explorer1404",
+    "productName": "BDAG 1404 Explorer",
+    "copyright": "Copyright © 2026 BDAG Community",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "public/**/*",
+      "server.js",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "BDAG-1404-Explorer-${version}-${arch}.${ext}",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BDAG 1404 Explorer"
+    },
+    "portable": {
+      "artifactName": "BDAG-1404-Explorer-Portable-${version}.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "keywords": [
+    "bdag",
+    "blockdag",
+    "chain-1404",
+    "explorer",
+    "community",
+    "electron"
+  ]
+}
